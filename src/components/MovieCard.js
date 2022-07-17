@@ -1,11 +1,19 @@
 import React from "react";
+import {addfAVOURITE} from '../actions'
 
 
 class MovieCard extends React.Component{
 
+    handleFavouriteClick = () => {
+        const {movie} = this.props;
+        this.props.dispatch(addfAVOURITE(movie))
+    }
+
+    handleUnFavouriteClick =() => {}
+
 
 render() {
-    const {movie} = this.props;
+    const {movie ,isFavourite} = this.props;
   return (
     <div className="movie-card">
 
@@ -18,7 +26,12 @@ render() {
             <div className="plot">{movie.Plot}</div>
             <div className="footer">
                 <div className="rating">{movie.imdbRating}</div>
-                <button className="favourite-btn"> Favourite</button>
+                {
+                    isFavourite ?
+                    <button className="unfavourite-btn" onClick={this.handleUnFavouriteClick}> Unfavourite</button>
+                    : <button className="favourite-btn" onClick={this.handleFavouriteClick}> Favourite</button>
+                }
+                
             </div>
         </div>
     </div>
