@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore } from 'redux';
+import rootReducer from './reducers'
 
 import './index.css';
 import App from './components/App';
-import movies from './reducers'
+// import movies from './reducers'
 
-const store = createStore(movies);
+// const store = createStore(movies);
+const store = createStore(rootReducer);
 console.log('store' , store);
 // console.log('BEFORE STATE' , store.getState());
 

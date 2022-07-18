@@ -2,7 +2,8 @@ import React from "react";
 import {data} from '../data';
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
-import {addMovies , setShowFavourites} from '../actions'
+import {addMovies , setShowFavourites} from '../actions';
+
  
 class App extends React.Component {
 
@@ -26,9 +27,10 @@ class App extends React.Component {
   }
 
   isMovieFavourite = (movie) => {
-    const {favourites} = this.props.store.getState();
+    // const {favourites} = this.props.store.getState();
+    const {movies} = this.props.store.getState();
 
-    const index = favourites.indexOf(movie);
+    const index = movies.favourites.indexOf(movie);
 
     if(index !== -1){
       //found the movie
@@ -42,9 +44,12 @@ onChangeTab = (val) => {
 }
 
   render() {
+    
+    // const movies = this.props.store.getState();  //{liist: [] , favourites: []}
+    // const {list , favourites , showFavourites} = this.props.store.getState();  //{liist: [] , favourites: []}
 
-  // const movies = this.props.store.getState();  //{liist: [] , favourites: []}
-  const {list , favourites , showFavourites} = this.props.store.getState();  //{liist: [] , favourites: []}
+    const {movies} = this.props.store.getState();
+  const {list , favourites , showFavourites} = movies;  //{movies: {} , search: {}}
   
   console.log('RENDER' , this.props.store.getState());
 

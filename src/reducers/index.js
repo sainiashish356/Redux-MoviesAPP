@@ -6,7 +6,7 @@ const initialMovieState = {
   showFavourites: false
 };
 
-export default function movies(state = initialMovieState, action) {
+export function movies(state = initialMovieState, action) {
 //   if(action.type === ADD_MOVIES){
 //   return {
 //        ...state,
@@ -15,6 +15,7 @@ export default function movies(state = initialMovieState, action) {
 //   }
 //   return state;
 
+  console.log('MOVIES REDUCER');
   switch (action.type) {
     case ADD_MOVIES:
       return {
@@ -46,3 +47,26 @@ export default function movies(state = initialMovieState, action) {
       return state;
   }
 }
+
+
+const initialSearchState = {
+  result: {}
+};
+
+export function search (state = initialSearchState , action){
+  console.log('SEARCH REDUCER');
+
+    return state;
+};
+
+const initialRootState = {
+  movies: initialMovieState,
+  search: initialSearchState
+};
+
+export default  function rootReducer(state = initialRootState , action){
+  return {
+    movies: movies(state.movies , action),
+    search: search(state.search , action)
+  }
+};
