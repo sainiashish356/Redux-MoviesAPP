@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { applyMiddleware, createStore } from 'redux';
-import rootReducer from './reducers'
+import rootReducer from './reducers';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './components/App';
+
 // import movies from './reducers'
 
 //this is the curried version of the logger (obj , next , action)
@@ -22,12 +24,23 @@ import App from './components/App';
 
 const logger = ({dispatch , getState}) => (next) => (action) => {
 //logger code
+if(typeof action !== 'function'){
+
   console.log('ACTION_TYPE =' , action.type);
+}
   next(action);
 }
 
+// const thunk = ({dispatch , getState}) => (next) => (action) => {
+// //thunk code
+//   if(typeof action === 'function'){
+//     action(dispatch);
+//   }
+//   next(action);
+// }
+
 // const store = createStore(movies);
-const store = createStore(rootReducer , applyMiddleware(logger));
+const store = createStore(rootReducer , applyMiddleware(logger , thunk));
 console.log('store' , store);
 // console.log('BEFORE STATE' , store.getState());
 
